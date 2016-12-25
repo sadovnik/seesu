@@ -8,8 +8,9 @@ var routePathByModels = require('./provoda/routePathByModels');
 
 var getSPIConstr = routePathByModels.getSPIConstr;
 var getSPI= routePathByModels.getSPI;
-
+var watchAndCollectProbes = require('./provoda/dcl/probe/watch');
 var pvState = pv.state;
+
 var cloneObj = spv.cloneObj;
 var countKeys = spv.countKeys;
 var collapseAll = spv.collapseAll;
@@ -360,6 +361,7 @@ var BrowseLevel = spv.inh(pv.Model, {
 			self.rtree = self.rtree.concat(self.map_parent.rtree);
 		}
 
+		watchAndCollectProbes(self, pioneer);
 	}
 }, {
 	getParentMapModel: function() {
